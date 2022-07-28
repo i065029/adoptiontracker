@@ -1,0 +1,57 @@
+{
+  "xsappname": "adoptiontracker",
+  "tenant-mode": "dedicated",
+  "foreign-scope-references": ["$ACCEPT_GRANTED_SCOPES"],
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    },
+    {
+      "name": "$XSAPPNAME.AdoptionTrackerViewer",
+      "description": "AdoptionTrackerViewer"
+    },
+    {
+      "name": "$XSAPPNAME.AdoptionTrackerAdmin",
+      "description": "AdoptionTrackerAdmin"
+    },
+    {
+      "name": "$XSAPPNAME.AdoptionTrackerProductsEditor",
+      "description": "AdoptionTrackerProductsEditor"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA Token Exchange",
+      "scope-references": [
+        "uaa.user"
+      ]
+    },
+    {
+      "name": "AdoptionTrackerViewer",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.AdoptionTrackerViewer"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "AdoptionTrackerAdmin",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.AdoptionTrackerAdmin"
+      ],
+      "attribute-references": []
+    },
+    {
+      "name": "AdoptionTrackerProductsEditor",
+      "description": "generated",
+      "scope-references": [
+        "$XSAPPNAME.AdoptionTrackerProductsEditor"
+      ],
+      "attribute-references": []
+    }
+  ]
+}

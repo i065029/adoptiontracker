@@ -1,0 +1,18 @@
+{
+    "role": {
+        "name": "adoptiontracker.db::EXTERNAL_FULL_ACCESS",
+        "schema_privileges": [
+            {
+                "privileges": [
+                    "SELECT",
+                    "SELECT METADATA",
+                    "EXECUTE",
+                    "INSERT",
+                    "UPDATE",
+                    "DELETE",
+                    "ALTER"
+                ]
+            }
+        ]
+    }
+}

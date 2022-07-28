@@ -1,0 +1,26 @@
+<!--
+    A view used to instantiate the rich text editor control.
+    It must be instantiated in javascript and not templated in XML.
+
+    By wrapping the RTF editor control in a form it behaves nicely with the
+    object page sections (so that we don't get double scroll bars and so on).
+-->
+<mvc:View xmlns="sap.m" displayBlock="true" xmlns:mvc="sap.ui.core.mvc" xmlns:f="sap.ui.layout.form"
+          controllerName="com.sap.pntcee.activities.ext.controller.ActivityLongText"
+          id="activityLongTextView">
+
+    <f:SimpleForm id="activityLongTextDisplayForm"
+                  layout="ResponsiveGridLayout"
+                  class="sapUiSmallMarginBegin"
+                  width="98%"
+                  visible="{= %{ui>/editMode} === 'Display' }">
+        <FormattedText id="commentText" htmlText="{activity_description}" convertLinksToAnchorTags="ProtocolOnly"/>
+    </f:SimpleForm>
+    <f:SimpleForm id="activityLongTextEditForm"
+                  layout="ResponsiveGridLayout"
+                  class="sapUiSmallMarginBegin"
+                  width="98%"
+                  visible="{= %{ui>/editMode} === 'Editable' }">
+        <!--- Have to add RichTextEditor here dynamically, as per documentation rules -->
+    </f:SimpleForm>
+</mvc:View>

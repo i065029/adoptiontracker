@@ -1,0 +1,3 @@
+ID;to_customer_ID;risk_transaction_type;risk_description;risk_mitigation_plan;risk_chance_of_success;risk_type_code;risk_priority_code;risk_status_code;risk_target
+5011AB883AB64EBFB1B995DD7F197E15;0000161430__LOB00008;1;This is a risk;This is a risk mitigation;0;0;0;0;2021-12-25
+E02D25EC7DC24E20983AC9C671B54CFA;0000161430__LOB00008;1;This is another risk;This is another risk mitigation;0;0;0;0;2021-12-25

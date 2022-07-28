@@ -1,0 +1,14 @@
+{
+    "role": {
+        "name": "adoptiontracker.db::EXTERNAL_ACCESS",
+        "schema_privileges": [
+            {
+                "privileges": [
+                    "SELECT",
+                    "SELECT METADATA",
+                    "EXECUTE"
+                ]
+            }
+        ]
+    }
+}

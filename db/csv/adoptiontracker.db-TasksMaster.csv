@@ -1,0 +1,32 @@
+ID;phase_ID;task_sequence;startdate;task;task_status_code
+280aad64-de92-4885-818c-ca4a45231bd2;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;1;;CSP will be notified by MU lead that they have been assigned a new customer with S2S documentation / Early engagement turns into BTP committed customer after deal is signed;0
+1bc1aec8-59c3-47bc-b1c7-7a232dc38424;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;2;;CSP to review S2S documentation in Harmony and follow process steps to either accept or reject handover information;0
+d97db64c-097b-4e38-8c18-d9d45b070cfb;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;3;;Where exists BTP subscription in addition to the RISE voucher or PAYG account. The CSP should reach out to the assigned Digital CSP or High Touch CSP for additional information;0
+a7a3e4e7-373b-40f6-bc42-d39ff82ea898;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;4;;Identity stakeholders - RISE CDM, RISE CSP, Implementation Partner, GoLive timeline;0
+8708ffd9-eb0a-4c5b-97d8-bb5c2acadf4c;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;5;;CSP to identify if BSR report for the customer exists;0
+5e1789cd-822c-4c5e-81a2-4f2b300524e7;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;6;;CSP then schedules initial handover meeting with Account Team;0
+449cd9b3-2bcb-4b00-833b-b5b10518f62f;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;7;;Account Team will then reach out to the customer to initiate introductory customer meeting;0
+620d04f5-4202-43fb-b6a1-d755b6e9de9d;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;8;;If there are any provisioning issues, CSPs should enlist the help of the account team to have this rectified (see Provisioning Transparency Link below for more info);0
+49d26151-56c3-4dca-bb59-b410396808f7;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;9;;Build clearer picture of customer's business, relationship with SAP and potential landscape;0
+d10c3bef-dd86-4220-8431-41a61846473c;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;10;;Go to Cloud Reporting (link below) to find information on customer's relationship with SAP - internal stakeholders, other SAP products, key renewal dates, value of BTP cloud credits/subscription;0
+b3fbe225-c39b-42d3-a13d-a74fb749b2ae;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;11;;Visit the customer's website to familiarize yourself with their business. You can also review documentation such as their annual report, press releases and other news;0
+d0af181b-6ac0-4924-a78f-ff27c3f39f54;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;12;;Check the MI tool to understand all SAP footprint and solution customer is using;0
+c0eb9924-61fc-4af4-9008-a8715b8046ca;557ba7d6-65f2-46c1-b45c-ba9ff4ccfe2e;13;;Go to HPI to check any project details from any past projects;0
+27e0a05a-224c-403b-86c8-d27424cff001;b9b28f8e-c264-40a5-a979-5f55a4a87d51;1;;First introductory meeting with the customer (typically 1 hour);0
+769e098e-36bc-4fe2-af1d-d7c18713ea0f;b9b28f8e-c264-40a5-a979-5f55a4a87d51;2;;Introduce the customer to the BTP CSP role;0
+0f71154e-3572-466c-a8c7-275f192f0a4d;b9b28f8e-c264-40a5-a979-5f55a4a87d51;3;;Introduce Onboarding Webinars;0
+d3d4377d-7aea-4973-9182-e041e7380213;b9b28f8e-c264-40a5-a979-5f55a4a87d51;4;;Establish governance and cadence;0
+def811f2-c7c8-465f-9de2-77ab03ac4ee4;b9b28f8e-c264-40a5-a979-5f55a4a87d51;5;;Opt: introduction to BTP core (high level) ;0
+7b19e06f-2b5f-4ca8-85bb-f215f9c57a99;b9b28f8e-c264-40a5-a979-5f55a4a87d51;6;;Overview of licensing model and what the customer purchased ;0
+8a22c3df-caa3-4c75-ba8d-a615aa5887f3;b9b28f8e-c264-40a5-a979-5f55a4a87d51;7;;Discuss use cases or upcoming projects ;0
+24f4d96d-09e5-426f-a9cf-4a2237af3819;b9b28f8e-c264-40a5-a979-5f55a4a87d51;8;;Organise for delivery of Foundational Acceleration Pack to help the customer get started on BTP;0
+ff6cca5e-c3aa-4c36-9cc5-940d6cf61cb7;b9b28f8e-c264-40a5-a979-5f55a4a87d51;9;;Introduce Acceleration Packs;0
+1026725b-29a5-4d35-abfc-211ebc7745f0;b9b28f8e-c264-40a5-a979-5f55a4a87d51;10;;If customer is interested, reach out to your Acceleration team leads to organise for delivery of Foundational Acceleration pack;0
+d34ca5b6-fb66-492c-9775-ffb8b4c8ff54;999ed697-879d-4013-ab1c-9cfed81e9904;1;;By this time, CSP will have an understanding of customer prioerities and timeline. Use the FRE Accl Survey Tool + Implementation Scenario + BPI Reports to come with recommendations for Accl Pack;0
+98cae7f0-e52e-40c4-90cc-eaa932e24573;999ed697-879d-4013-ab1c-9cfed81e9904;2;;All potential use cases, along with project plans and documentation are to be recorded in the Success Template document and should be attached in Totango.;0
+1fcaa05e-07dd-4c20-8824-2513554d9972;6b38d533-0e13-42e7-8bf3-9d4ae6e2ee05;1;;project kick-off call with the customer’s IT Team and Partner to brief on the roles and responsibilities;0
+63b6dfb2-b13d-4c6d-9662-63143a45adad;6b38d533-0e13-42e7-8bf3-9d4ae6e2ee05;2;;Present the Accleration Pack recommendations;0
+0c2fe7c4-649b-4f12-a344-6fa22f661d9a;6b38d533-0e13-42e7-8bf3-9d4ae6e2ee05;3;;Once the Acceleration packs are implemented, the Activation CSP should schedule a project closure call with a walk-through to demonstrate the final outcome;0
+898c7190-06f7-4ed1-9d81-4135edf79360;ad4d7cde-9e73-4df4-ab20-762242b145ce;1;;Assess the customers’ interest in BTP for consumption potential - Either take existing pack to production or have identified new use cases;0
+a877a739-4296-4403-8e1d-9f25d68993e2;ad4d7cde-9e73-4df4-ab20-762242b145ce;2;;Recommend additional FRE activities to help uplift customer maturity in specific technology domains.;0
+732c74cf-1f03-4ba3-8529-651057db125a;ad4d7cde-9e73-4df4-ab20-762242b145ce;3;;Transition to HT-CSP or Digital depending on the consumption potential;0

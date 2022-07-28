@@ -1,0 +1,7 @@
+<!--
+	Fragment for a custom object page section on the Activities object page.
+	This is used to display the long text of an activity.
+-->
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+	<mvc:XMLView viewName="com.sap.pntcee.activities.ext.view.ActivityLongText" type="XML" />
+</core:FragmentDefinition>

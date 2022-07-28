@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+    <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="FREActivityService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="FREActivities" EntityType="FREActivityService.FREActivities">
+          <NavigationPropertyBinding Path="domain" Target="TechnicalDomain"/>
+          <NavigationPropertyBinding Path="engagement_model" Target="EngagementModel"/>
+          <NavigationPropertyBinding Path="to_products" Target="ActivityProducts"/>
+          <NavigationPropertyBinding Path="supportingteam" Target="SupportingTeams"/>
+          <NavigationPropertyBinding Path="fre_realm" Target="FRERealm"/>
+          <NavigationPropertyBinding Path="fre_pillar" Target="FREPillar"/>
+          <NavigationPropertyBinding Path="region" Target="Regions"/>
+        </EntitySet>
+        <EntitySet Name="Products" EntityType="FREActivityService.Products">
+          <NavigationPropertyBinding Path="category" Target="ProductCategories"/>
+        </EntitySet>
+        <EntitySet Name="ProductCategories" EntityType="FREActivityService.ProductCategories"/>
+        <EntitySet Name="SupportingTeams" EntityType="FREActivityService.SupportingTeams"/>
+        <EntitySet Name="Regions" EntityType="FREActivityService.Regions"/>
+        <EntitySet Name="TechnicalDomain" EntityType="FREActivityService.TechnicalDomain">
+          <NavigationPropertyBinding Path="texts" Target="TechnicalDomain_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="TechnicalDomain_texts"/>
+        </EntitySet>
+        <EntitySet Name="EngagementModel" EntityType="FREActivityService.EngagementModel">
+          <NavigationPropertyBinding Path="texts" Target="EngagementModel_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="EngagementModel_texts"/>
+        </EntitySet>
+        <EntitySet Name="ActivityProducts" EntityType="FREActivityService.ActivityProducts">
+          <NavigationPropertyBinding Path="activity" Target="FREActivities"/>
+          <NavigationPropertyBinding Path="product" Target="Products"/>
+        </EntitySet>
+        <EntitySet Name="FRERealm" EntityType="FREActivityService.FRERealm">
+          <NavigationPropertyBinding Path="texts" Target="FRERealm_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="FRERealm_texts"/>
+        </EntitySet>
+        <EntitySet Name="FREPillar" EntityType="FREActivityService.FREPillar">
+          <NavigationPropertyBinding Path="texts" Target="FREPillar_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="FREPillar_texts"/>
+        </EntitySet>
+        <EntitySet Name="TechnicalDomain_texts" EntityType="FREActivityService.TechnicalDomain_texts"/>
+        <EntitySet Name="EngagementModel_texts" EntityType="FREActivityService.EngagementModel_texts"/>
+        <EntitySet Name="FRERealm_texts" EntityType="FREActivityService.FRERealm_texts"/>
+        <EntitySet Name="FREPillar_texts" EntityType="FREActivityService.FREPillar_texts"/>
+      </EntityContainer>
+      <EntityType Name="FREActivities">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="description" Type="Edm.String"/>
+        <NavigationProperty Name="domain" Type="FREActivityService.TechnicalDomain">
+          <ReferentialConstraint Property="domain_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="domain_code" Type="Edm.Int32"/>
+        <Property Name="maturity_level_min" Type="Edm.Int32"/>
+        <Property Name="maturity_level_max" Type="Edm.Int32"/>
+        <NavigationProperty Name="engagement_model" Type="FREActivityService.EngagementModel">
+          <ReferentialConstraint Property="engagement_model_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="engagement_model_code" Type="Edm.Int32"/>
+        <Property Name="cost" Type="Edm.Boolean" DefaultValue="false"/>
+        <Property Name="duration" Type="Edm.String"/>
+        <Property Name="expected_outcome" Type="Edm.String"/>
+        <Property Name="prereqs_deps" Type="Edm.String"/>
+        <NavigationProperty Name="to_products" Type="Collection(FREActivityService.ActivityProducts)" Partner="activity">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="supportingteam" Type="FREActivityService.SupportingTeams">
+          <ReferentialConstraint Property="supportingteam_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="supportingteam_ID" Type="Edm.Guid"/>
+        <Property Name="short_text" Type="Edm.String"/>
+        <Property Name="person_responsible" Type="Edm.String"/>
+        <NavigationProperty Name="fre_realm" Type="FREActivityService.FRERealm">
+          <ReferentialConstraint Property="fre_realm_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="fre_realm_code" Type="Edm.Int32"/>
+        <NavigationProperty Name="fre_pillar" Type="FREActivityService.FREPillar">
+          <ReferentialConstraint Property="fre_pillar_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="fre_pillar_code" Type="Edm.Int32"/>
+        <NavigationProperty Name="region" Type="FREActivityService.Regions">
+          <ReferentialConstraint Property="region_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="region_ID" Type="Edm.Guid"/>
+      </EntityType>
+      <EntityType Name="Products">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="50"/>
+        <NavigationProperty Name="category" Type="FREActivityService.ProductCategories">
+          <ReferentialConstraint Property="category_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="category_ID" Type="Edm.Guid"/>
+        <Property Name="description" Type="Edm.String" MaxLength="500"/>
+      </EntityType>
+      <EntityType Name="ProductCategories">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="description" Type="Edm.String" MaxLength="50"/>
+      </EntityType>
+      <EntityType Name="SupportingTeams">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="description" Type="Edm.String"/>
+        <Property Name="key_contact" Type="Edm.String"/>
+        <Property Name="email" Type="Edm.String"/>
+        <Property Name="how_to_engage" Type="Edm.String"/>
+        <Property Name="key_links" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="Regions">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="name" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="TechnicalDomain">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(FREActivityService.TechnicalDomain_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="FREActivityService.TechnicalDomain_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="EngagementModel">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(FREActivityService.EngagementModel_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="FREActivityService.EngagementModel_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="ActivityProducts">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <NavigationProperty Name="activity" Type="FREActivityService.FREActivities" Partner="to_products">
+          <ReferentialConstraint Property="activity_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="activity_ID" Type="Edm.Guid"/>
+        <NavigationProperty Name="product" Type="FREActivityService.Products">
+          <ReferentialConstraint Property="product_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="product_ID" Type="Edm.Guid"/>
+      </EntityType>
+      <EntityType Name="FRERealm">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(FREActivityService.FRERealm_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="FREActivityService.FRERealm_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="FREPillar">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="realm" Type="Edm.Int32"/>
+        <NavigationProperty Name="texts" Type="Collection(FREActivityService.FREPillar_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="FREActivityService.FREPillar_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="TechnicalDomain_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="EngagementModel_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="FRERealm_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="FREPillar_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <Annotations Target="FREActivityService.FREActivities/ID">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREActivities/domain_code">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="TechnicalDomain"/>
+            <PropertyValue Property="CollectionPath" String="TechnicalDomain"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="domain_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREActivities/maturity_level_min">
+        <Annotation Term="Validation.Minimum" Int="1"/>
+        <Annotation Term="Validation.Maximum" Int="5"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREActivities/maturity_level_max">
+        <Annotation Term="Validation.Minimum" Int="1"/>
+        <Annotation Term="Validation.Maximum" Int="5"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREActivities/engagement_model_code">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="EngagementModel"/>
+            <PropertyValue Property="CollectionPath" String="EngagementModel"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="engagement_model_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREActivities/fre_realm_code">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="FRERealm"/>
+            <PropertyValue Property="CollectionPath" String="FRERealm"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="fre_realm_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREActivities/fre_pillar_code">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="FREPillar"/>
+            <PropertyValue Property="CollectionPath" String="FREPillar"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="fre_pillar_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.EntityContainer/Products">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.EntityContainer/ProductCategories">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.EntityContainer/SupportingTeams">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.TechnicalDomain">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.TechnicalDomain/name">
+        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.TechnicalDomain/descr">
+        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.EngagementModel">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.EngagementModel/name">
+        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.EngagementModel/descr">
+        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.ActivityProducts/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.ActivityProducts/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.ActivityProducts/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.ActivityProducts/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+        <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FRERealm">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.FRERealm/name">
+        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FRERealm/descr">
+        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREPillar">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREPillar/name">
+        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREPillar/descr">
+        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.TechnicalDomain_texts/name">
+        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.TechnicalDomain_texts/descr">
+        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.EngagementModel_texts/name">
+        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.EngagementModel_texts/descr">
+        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FRERealm_texts/name">
+        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FRERealm_texts/descr">
+        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREPillar_texts/name">
+        <Annotation Term="Common.Label" String="{i18n>Name}"/>
+      </Annotations>
+      <Annotations Target="FREActivityService.FREPillar_texts/descr">
+        <Annotation Term="Common.Label" String="{i18n>Description}"/>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

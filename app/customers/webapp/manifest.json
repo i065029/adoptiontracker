@@ -1,0 +1,440 @@
+{
+    "_version": "1.32.0",
+    "sap.app": {
+        "id": "com.sap.pntcee.customers",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "dataSources": {
+            "mainService": {
+                "uri": "/cust/",
+                "type": "OData",
+                "settings": {
+                    "odataVersion": "4.0",
+                    "localUri": "localService/metadata.xml",
+                    "--annotations": [
+                        "annotation"
+                    ]
+                }
+            },
+            "--annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml"
+            }
+        },
+        "offline": false,
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "ui5template.fiorielements.v4.lrop",
+            "version": "1.0.0"
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "AdoptionTracker-display": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "AdoptionTracker",
+                    "action": "display",
+                    "icon": "sap-icon://vertical-stacked-chart"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.platform.cf": {
+        "ui5VersionNumber": "1.104.1"
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "dependencies": {
+            "minUI5Version": "1.104.1",
+            "libs": {
+                "sap.ui.core": {},
+                "sap.fe.templates": {},
+                "sap.fe.macros": {},
+                "sap.f": {},
+                "sap.ui.layout": {},
+                "sap.m": {},
+                "sap.chart": {},
+                "sap.viz": {}
+            }
+        },
+        "resourceRoots": {
+            "sap.fe.blocks.richtexteditor": "./ext/blocks/"
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.fe.templates.ObjectPage.ObjectPageController#com.sap.pntcee.customers::ActivitiesObjectPage": {
+                        "controllerName": "com.sap.pntcee.customers.ext.controller.ActivityObjectPageExt"
+                    }
+                }
+            }
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "synchronizationMode": "None",
+                    "operationMode": "Server",
+                    "autoExpandSelect": true,
+                    "earlyRequests": true
+                }
+            }
+        },
+        "routing": {
+            "routes": [
+                {
+                    "pattern": ":?query:",
+                    "name": "CustomersList",
+                    "target": "CustomersList"
+                },
+                {
+                    "pattern": "Customers({key}):?query:",
+                    "name": "CustomersObjectPage",
+                    "target": "CustomersObjectPage"
+                },
+                {
+                    "pattern": "Customers({key})/to_activities({key2}):?query:",
+                    "name": "ActivitiesObjectPage",
+                    "target": "ActivitiesObjectPage"
+                },
+                {
+                    "pattern": "Customers({key})/to_risks({key2}):?query:",
+                    "name": "RisksObjectPage",
+                    "target": "RisksObjectPage"
+                },
+                {
+                    "pattern": "Customers({key})/to_act_progress({key2}):?query:",
+                    "name": "ActTasksObjectPage",
+                    "target": "ActTasksObjectPage"
+                }
+            ],
+            "targets": {
+                "CustomersList": {
+                    "type": "Component",
+                    "id": "CustomersList",
+                    "name": "sap.fe.templates.ListReport",
+                    "options": {
+                        "settings": {
+                            "entitySet": "Customers",
+                            "variantManagement": "Page",
+                            "navigation": {
+                                "Customers": {
+                                    "detail": {
+                                        "route": "CustomersObjectPage"
+                                    }
+                                }
+                            },
+                            "initialLoad": "Enabled",
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "ShowAllActivities": {
+                                            "press": "com.sap.pntcee.customers.ext.controller.CustomersGlobalActions.showAllActivities",
+                                            "visible": "true",
+                                            "enabled": "true",
+                                            "text": "{{SHOW_ALL_ACTIVITIES_BUTTON}}"
+                                        },
+                                        "SyncTotangoCustomers": {
+                                            "press": "com.sap.pntcee.customers.ext.controller.CustomersGlobalActions.syncTotangoCustomers",
+                                            "visible": "{= ${/Settings/is_admin}}",
+                                            "enabled": "true",
+                                            "text": "Sync"
+                                        },
+                                        "StartJobs": {
+                                            "press": "com.sap.pntcee.customers.ext.controller.CustomersGlobalActions.startJobs",
+                                            "visible": "{= ${/Settings/is_admin}}",
+                                            "enabled": "true",
+                                            "text": "Schedule Sync"
+                                        },
+                                        "StopJobs": {
+                                            "press": "com.sap.pntcee.customers.ext.controller.CustomersGlobalActions.stopJobs",
+                                            "visible": "{= ${/Settings/is_admin}}",
+                                            "enabled": "true",
+                                            "text": "Stop scheduled Sync"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "CustomersObjectPage": {
+                    "type": "Component",
+                    "id": "CustomersObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "Customers",
+                            "content": {
+                                "body": {
+                                    "sections": {
+                                        "MaturityTable": {
+                                            "sideContent": {
+                                                "template": "com.sap.pntcee.customers.ext.fragment.MaturitySideContent",
+                                                "equalSplit": "true"
+                                            },
+                                            "type": "XMLFragment"
+                                        }
+                                    }
+                                }
+                            },
+                            "navigation": {
+                                "to_activities": {
+                                    "detail": {
+                                        "route": "ActivitiesObjectPage"
+                                    }
+                                },
+                                "to_risks": {
+                                    "detail": {
+                                        "route": "RisksObjectPage"
+                                    }
+                                },
+                                "to_act_progress": {
+                                    "detail": {
+                                        "route": "ActTasksObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "to_activities/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "creationMode": {
+                                            "name": "NewPage",
+                                            "createAtEnd": true
+                                        },
+                                        "enableFullScreen": true,
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#ActivityAllFilter"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#ActivityTransactionFilter"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#ActivityAdoptionFilter"
+                                                }
+                                            ],
+                                            "showCounts": true,
+                                            "hideTableTitle": true
+                                        }
+                                    },
+                                    "actions": {
+                                        "CustomActionTable": {
+                                            "press": "com.sap.pntcee.customers.ext.controller.ActivityCustomActions.addFromTemplate",
+                                            "enabled": "{= %{ui>/editMode} === 'Display' }",
+                                            "visible": true,
+                                            "text": "{i18n>ACTION_ADD_FROM_TEMPLATE}"
+                                        }
+                                    }
+                                },
+                                "to_risks/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "creationMode": {
+                                            "name": "Inline",
+                                            "createAtEnd": true
+                                        },
+                                        "enableFullScreen": true
+                                    }
+                                },
+                                "to_maturity/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "ResponsiveTable",
+                                        "creationMode": {
+                                            "name": "Inline",
+                                            "createAtEnd": true
+                                        },
+                                        "enableFullScreen": true,
+                                        "quickVariantSelection": {
+                                            "paths": [
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#AnalyticsDomainFilter"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#DevOpsDomainFilter"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#DataDomainFilter"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#DigitalExpDomainFilter"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#IntegrationDomainFilter"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#IntelligentTechDomainFilter"
+                                                },
+                                                {
+                                                    "annotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SecurityDomainFilter"
+                                                }
+                                            ]
+                                        },
+                                        "personalization": {
+                                            "column": false,
+                                            "filter": false,
+                                            "sort": false
+                                        }
+                                    },
+                                    "actions": {
+                                        "CustomActionTableAddActivities": {
+                                            "--press": "com.sap.pntcee.customers.ext.controller.MaturityActions.addFromTemplate",
+                                            "press": "com.sap.pntcee.customers.ext.controller.ActivityCustomActions.addRecommendedFromTemplate",
+                                            "enabled": "{= %{ui>/editMode} === 'Display' }",
+                                            "visible": true,
+                                            "text": "{i18n>ACTION_ADD_ACTIVITIES}"
+                                        },
+                                        "CustomActionTable": {
+                                            "press": "com.sap.pntcee.customers.ext.controller.ActivityCustomActions.openMaturityHelper",
+                                            "enabled": true,
+                                            "visible": true,
+                                            "text": "{i18n>MaturityLevelsHelp}"
+                                        }
+                                    }
+                                },
+                                "to_act_progress/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "creationMode": {
+                                            "name": "Inline",
+                                            "createAtEnd": true
+                                        },
+                                        "enableFullScreen": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "ActivitiesObjectPage": {
+                    "type": "Component",
+                    "id": "ActivitiesObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": true,
+                            "entitySet": "Activities",
+                            "content": {
+                                "body": {
+                                    "sections": {
+                                        "activityLongText": {
+                                            "template": "com.sap.pntcee.customers.ext.fragment.activitylongtext",
+                                            "position": {
+                                                "anchor": "Activity",
+                                                "placement": "After"
+                                            },
+                                            "type": "XMLFragment",
+                                            "title": "{i18n>ACTIVITY_RTF_DESCRIPTION}"
+                                        }
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "to_products/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "enableExport": false,
+                                        "enablePaste": false,
+                                        "enableFullScreen": false
+                                    }
+                                },
+                                "to_outcomes/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "enableExport": false,
+                                        "enableFullScreen": false,
+                                        "enablePaste": false
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "RisksObjectPage": {
+                    "type": "Component",
+                    "id": "RisksObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": true,
+                            "entitySet": "Risks"
+                        }
+                    }
+                },
+                "ActTasksObjectPage": {
+                    "type": "Component",
+                    "id": "ActTasksObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "ActivationPhases",
+                            "content": {
+                                "body": {
+                                    "sections": {
+                                        "activityLongText": {
+                                            "template": "com.sap.pntcee.customers.ext.fragment.phaselongtext",
+                                            "position": {
+                                                "anchor": "Tasks",
+                                                "placement": "Before"
+                                            },
+                                            "type": "XMLFragment",
+                                            "title": "{i18n>ACTIVATION_TASK_DESCRIPTION}"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "_version": "1.1.0",
+        "uri": ""
+    },
+    "sap.platform.hcp": {
+        "_version": "1.1.0",
+        "uri": ""
+    },
+    "sap.fiori": {
+        "_version": "1.1.0",
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "adoptiontracker"
+    }
+}

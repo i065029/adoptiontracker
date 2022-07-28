@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:DataServices>
+        <Schema Namespace="ProductsService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Products" EntityType="ProductsService.Products">
+                    <NavigationPropertyBinding Path="category" Target="ProductCategories"/>
+                </EntitySet>
+                <EntitySet Name="ProductCategories" EntityType="ProductsService.ProductCategories"/>
+            </EntityContainer>
+            <EntityType Name="Products">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="50"/>
+                <NavigationProperty Name="category" Type="ProductsService.ProductCategories">
+                    <ReferentialConstraint Property="category_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="category_ID" Type="Edm.Guid"/>
+                <Property Name="description" Type="Edm.String" MaxLength="200"/>
+            </EntityType>
+            <EntityType Name="ProductCategories">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="description" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

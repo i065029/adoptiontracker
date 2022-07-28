@@ -1,0 +1,3319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Capabilities.V1.xml">
+    <edmx:Include Alias="Capabilities" Namespace="Org.OData.Capabilities.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+    <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/HTML5.xml">
+    <edmx:Include Alias="HTML5" Namespace="com.sap.vocabularies.HTML5.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Measures.V1.xml">
+    <edmx:Include Alias="Measures" Namespace="Org.OData.Measures.V1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+    <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema Namespace="CustomersService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="EntityContainer">
+        <EntitySet Name="Customers" EntityType="CustomersService.Customers">
+          <NavigationPropertyBinding Path="to_cee" Target="Cees"/>
+          <NavigationPropertyBinding Path="currency" Target="Currencies"/>
+          <NavigationPropertyBinding Path="executive_alignment" Target="ExecutiveAlignment"/>
+          <NavigationPropertyBinding Path="partner_type" Target="PartnerType"/>
+          <NavigationPropertyBinding Path="rise_status" Target="RiseStatus"/>
+          <NavigationPropertyBinding Path="paygo_status" Target="PaygoStatus"/>
+          <NavigationPropertyBinding Path="adjustment_reason" Target="AdjustmentReason"/>
+          <NavigationPropertyBinding Path="to_activities" Target="Activities"/>
+          <NavigationPropertyBinding Path="to_risks" Target="Risks"/>
+          <NavigationPropertyBinding Path="to_maturity" Target="MaturityAssessments"/>
+          <NavigationPropertyBinding Path="SiblingEntity" Target="Customers"/>
+        </EntitySet>
+        <EntitySet Name="MarketUnitsValueHelp" EntityType="CustomersService.MarketUnitsValueHelp"/>
+        <EntitySet Name="Activities" EntityType="CustomersService.Activities">
+          <NavigationPropertyBinding Path="to_customer" Target="Customers"/>
+          <NavigationPropertyBinding Path="activity_category" Target="ActivityCategory"/>
+          <NavigationPropertyBinding Path="activity_type" Target="ActivityType"/>
+          <NavigationPropertyBinding Path="activity_status" Target="ActivityStatus"/>
+          <NavigationPropertyBinding Path="sap_program" Target="SAPProgramType"/>
+          <NavigationPropertyBinding Path="impl_support_team" Target="ImplSupportTeam"/>
+          <NavigationPropertyBinding Path="to_products" Target="ActivityProducts"/>
+          <NavigationPropertyBinding Path="SiblingEntity" Target="Activities"/>
+        </EntitySet>
+        <EntitySet Name="Risks" EntityType="CustomersService.Risks">
+          <NavigationPropertyBinding Path="to_customer" Target="Customers"/>
+          <NavigationPropertyBinding Path="risk_type" Target="RiskType"/>
+          <NavigationPropertyBinding Path="risk_priority" Target="RiskPriority"/>
+          <NavigationPropertyBinding Path="risk_status" Target="RiskStatus"/>
+          <NavigationPropertyBinding Path="SiblingEntity" Target="Risks"/>
+        </EntitySet>
+        <EntitySet Name="MaturityAssessments" EntityType="CustomersService.MaturityAssessments">
+          <NavigationPropertyBinding Path="customer" Target="Customers"/>
+          <NavigationPropertyBinding Path="domain" Target="TechnologyDomains"/>
+          <NavigationPropertyBinding Path="dimension" Target="MaturityDimensions"/>
+          <NavigationPropertyBinding Path="SiblingEntity" Target="MaturityAssessments"/>
+        </EntitySet>
+        <EntitySet Name="Regions" EntityType="CustomersService.Regions">
+          <NavigationPropertyBinding Path="market_units" Target="MarketUnits"/>
+        </EntitySet>
+        <EntitySet Name="MarketUnits" EntityType="CustomersService.MarketUnits">
+          <NavigationPropertyBinding Path="region" Target="Regions"/>
+          <NavigationPropertyBinding Path="cees" Target="MarketUnitCees"/>
+        </EntitySet>
+        <EntitySet Name="MarketUnitCees" EntityType="CustomersService.MarketUnitCees">
+          <NavigationPropertyBinding Path="market_unit" Target="MarketUnits"/>
+          <NavigationPropertyBinding Path="cee" Target="Cees"/>
+        </EntitySet>
+        <EntitySet Name="Cees" EntityType="CustomersService.Cees">
+          <NavigationPropertyBinding Path="market_units" Target="MarketUnitCees"/>
+        </EntitySet>
+        <EntitySet Name="ProductCategories" EntityType="CustomersService.ProductCategories"/>
+        <EntitySet Name="ActivityProducts" EntityType="CustomersService.ActivityProducts">
+          <NavigationPropertyBinding Path="activity" Target="Activities"/>
+          <NavigationPropertyBinding Path="product" Target="Products"/>
+          <NavigationPropertyBinding Path="SiblingEntity" Target="ActivityProducts"/>
+        </EntitySet>
+        <EntitySet Name="Products" EntityType="CustomersService.Products">
+          <NavigationPropertyBinding Path="category" Target="ProductCategories"/>
+        </EntitySet>
+        <EntitySet Name="MaturityDimensionLevels" EntityType="CustomersService.MaturityDimensionLevels">
+          <NavigationPropertyBinding Path="dimension" Target="MaturityDimensions"/>
+          <NavigationPropertyBinding Path="texts" Target="MaturityDimensionLevels_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="MaturityDimensionLevels_texts"/>
+        </EntitySet>
+        <Singleton Name="Settings" Type="CustomersService.Settings"/>
+        <EntitySet Name="Currencies" EntityType="CustomersService.Currencies">
+          <NavigationPropertyBinding Path="texts" Target="Currencies_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="Currencies_texts"/>
+        </EntitySet>
+        <EntitySet Name="ExecutiveAlignment" EntityType="CustomersService.ExecutiveAlignment">
+          <NavigationPropertyBinding Path="texts" Target="ExecutiveAlignment_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="ExecutiveAlignment_texts"/>
+        </EntitySet>
+        <EntitySet Name="PartnerType" EntityType="CustomersService.PartnerType">
+          <NavigationPropertyBinding Path="texts" Target="PartnerType_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="PartnerType_texts"/>
+        </EntitySet>
+        <EntitySet Name="RiseStatus" EntityType="CustomersService.RiseStatus">
+          <NavigationPropertyBinding Path="texts" Target="RiseStatus_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="RiseStatus_texts"/>
+        </EntitySet>
+        <EntitySet Name="PaygoStatus" EntityType="CustomersService.PaygoStatus">
+          <NavigationPropertyBinding Path="texts" Target="PaygoStatus_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="PaygoStatus_texts"/>
+        </EntitySet>
+        <EntitySet Name="AdjustmentReason" EntityType="CustomersService.AdjustmentReason">
+          <NavigationPropertyBinding Path="texts" Target="AdjustmentReason_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="AdjustmentReason_texts"/>
+        </EntitySet>
+        <EntitySet Name="ActivityCategory" EntityType="CustomersService.ActivityCategory">
+          <NavigationPropertyBinding Path="texts" Target="ActivityCategory_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="ActivityCategory_texts"/>
+        </EntitySet>
+        <EntitySet Name="ActivityType" EntityType="CustomersService.ActivityType">
+          <NavigationPropertyBinding Path="texts" Target="ActivityType_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="ActivityType_texts"/>
+        </EntitySet>
+        <EntitySet Name="ActivityStatus" EntityType="CustomersService.ActivityStatus">
+          <NavigationPropertyBinding Path="texts" Target="ActivityStatus_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="ActivityStatus_texts"/>
+        </EntitySet>
+        <EntitySet Name="SAPProgramType" EntityType="CustomersService.SAPProgramType">
+          <NavigationPropertyBinding Path="texts" Target="SAPProgramType_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="SAPProgramType_texts"/>
+        </EntitySet>
+        <EntitySet Name="ImplSupportTeam" EntityType="CustomersService.ImplSupportTeam">
+          <NavigationPropertyBinding Path="texts" Target="ImplSupportTeam_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="ImplSupportTeam_texts"/>
+        </EntitySet>
+        <EntitySet Name="RiskType" EntityType="CustomersService.RiskType">
+          <NavigationPropertyBinding Path="texts" Target="RiskType_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="RiskType_texts"/>
+        </EntitySet>
+        <EntitySet Name="RiskPriority" EntityType="CustomersService.RiskPriority">
+          <NavigationPropertyBinding Path="texts" Target="RiskPriority_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="RiskPriority_texts"/>
+        </EntitySet>
+        <EntitySet Name="RiskStatus" EntityType="CustomersService.RiskStatus">
+          <NavigationPropertyBinding Path="texts" Target="RiskStatus_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="RiskStatus_texts"/>
+        </EntitySet>
+        <EntitySet Name="TechnologyDomains" EntityType="CustomersService.TechnologyDomains">
+          <NavigationPropertyBinding Path="texts" Target="TechnologyDomains_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="TechnologyDomains_texts"/>
+        </EntitySet>
+        <EntitySet Name="MaturityDimensions" EntityType="CustomersService.MaturityDimensions">
+          <NavigationPropertyBinding Path="texts" Target="MaturityDimensions_texts"/>
+          <NavigationPropertyBinding Path="localized" Target="MaturityDimensions_texts"/>
+        </EntitySet>
+        <EntitySet Name="MaturityDimensionLevels_texts" EntityType="CustomersService.MaturityDimensionLevels_texts"/>
+        <EntitySet Name="Currencies_texts" EntityType="CustomersService.Currencies_texts"/>
+        <EntitySet Name="ExecutiveAlignment_texts" EntityType="CustomersService.ExecutiveAlignment_texts"/>
+        <EntitySet Name="PartnerType_texts" EntityType="CustomersService.PartnerType_texts"/>
+        <EntitySet Name="RiseStatus_texts" EntityType="CustomersService.RiseStatus_texts"/>
+        <EntitySet Name="PaygoStatus_texts" EntityType="CustomersService.PaygoStatus_texts"/>
+        <EntitySet Name="AdjustmentReason_texts" EntityType="CustomersService.AdjustmentReason_texts"/>
+        <EntitySet Name="ActivityCategory_texts" EntityType="CustomersService.ActivityCategory_texts"/>
+        <EntitySet Name="ActivityType_texts" EntityType="CustomersService.ActivityType_texts"/>
+        <EntitySet Name="ActivityStatus_texts" EntityType="CustomersService.ActivityStatus_texts"/>
+        <EntitySet Name="SAPProgramType_texts" EntityType="CustomersService.SAPProgramType_texts"/>
+        <EntitySet Name="ImplSupportTeam_texts" EntityType="CustomersService.ImplSupportTeam_texts"/>
+        <EntitySet Name="RiskType_texts" EntityType="CustomersService.RiskType_texts"/>
+        <EntitySet Name="RiskPriority_texts" EntityType="CustomersService.RiskPriority_texts"/>
+        <EntitySet Name="RiskStatus_texts" EntityType="CustomersService.RiskStatus_texts"/>
+        <EntitySet Name="TechnologyDomains_texts" EntityType="CustomersService.TechnologyDomains_texts"/>
+        <EntitySet Name="MaturityDimensions_texts" EntityType="CustomersService.MaturityDimensions_texts"/>
+        <ActionImport Name="updateCustomers" Action="CustomersService.updateCustomers"/>
+        <ActionImport Name="startJobs" Action="CustomersService.startJobs"/>
+        <ActionImport Name="stopJobs" Action="CustomersService.stopJobs"/>
+        <FunctionImport Name="isAdmin" Function="CustomersService.isAdmin"/>
+      </EntityContainer>
+      <EntityType Name="Customers">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="IsActiveEntity"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="account_id" Type="Edm.String" MaxLength="20"/>
+        <Property Name="customer_name" Type="Edm.String" MaxLength="100"/>
+        <Property Name="account_type" Type="Edm.String" MaxLength="50"/>
+        <Property Name="status" Type="Edm.String" MaxLength="10"/>
+        <Property Name="region" Type="Edm.String" MaxLength="50"/>
+        <Property Name="market_unit" Type="Edm.String" MaxLength="50"/>
+        <Property Name="country" Type="Edm.String" MaxLength="100"/>
+        <Property Name="industry_code" Type="Edm.String" MaxLength="100"/>
+        <NavigationProperty Name="to_cee" Type="CustomersService.Cees">
+          <ReferentialConstraint Property="to_cee_id" ReferencedProperty="id"/>
+        </NavigationProperty>
+        <Property Name="to_cee_id" Type="Edm.String"/>
+        <Property Name="acv" Type="Edm.Decimal" Scale="2" Precision="12"/>
+        <Property Name="health_rank" Type="Edm.String" MaxLength="10"/>
+        <Property Name="cloud_health_assessment" Type="Edm.String" MaxLength="50"/>
+        <Property Name="cs_sentiment" Type="Edm.String" MaxLength="10"/>
+        <Property Name="cs_sentiment_reason" Type="Edm.String" MaxLength="30"/>
+        <Property Name="entitlement_consumption" Type="Edm.Decimal" Scale="2" Precision="6"/>
+        <Property Name="consumption_actual" Type="Edm.Decimal" Scale="2" Precision="6"/>
+        <Property Name="shelfware" Type="Edm.String" MaxLength="10"/>
+        <Property Name="days_in_shelfware" Type="Edm.Int32"/>
+        <Property Name="products" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="renewal_type" Type="Edm.String" MaxLength="20"/>
+        <Property Name="next_renewal_date" Type="Edm.Date"/>
+        <Property Name="days_until_next_renewal" Type="Edm.Int32"/>
+        <Property Name="ce_acct_classification" Type="Edm.String" MaxLength="20"/>
+        <Property Name="int_acct_classification" Type="Edm.String" MaxLength="20"/>
+        <Property Name="last_touch" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="satisfaction_score" Type="Edm.Int32"/>
+        <Property Name="contract_start_date" Type="Edm.Date"/>
+        <NavigationProperty Name="currency" Type="CustomersService.Currencies">
+          <ReferentialConstraint Property="currency_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="currency_code" Type="Edm.String" MaxLength="3"/>
+        <Property Name="cr_url" Type="Edm.String"/>
+        <Property Name="consumption_perc" Type="Edm.Decimal" Scale="2" Precision="6"/>
+        <Property Name="cs_sentiment_criticality" Type="Edm.Int32"/>
+        <Property Name="cloud_health_assessment_criticality" Type="Edm.Int32"/>
+        <Property Name="exec_sponsor_required" Type="Edm.Boolean" DefaultValue="false"/>
+        <NavigationProperty Name="executive_alignment" Type="CustomersService.ExecutiveAlignment">
+          <ReferentialConstraint Property="executive_alignment_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="executive_alignment_code" Type="Edm.Int32" DefaultValue="0"/>
+        <NavigationProperty Name="partner_type" Type="CustomersService.PartnerType">
+          <ReferentialConstraint Property="partner_type_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="partner_type_code" Type="Edm.Int32" DefaultValue="0"/>
+        <Property Name="partner" Type="Edm.String" MaxLength="100"/>
+        <Property Name="live_apps" Type="Edm.Int32" DefaultValue="0"/>
+        <Property Name="planned_apps" Type="Edm.Int32" DefaultValue="0"/>
+        <NavigationProperty Name="rise_status" Type="CustomersService.RiseStatus">
+          <ReferentialConstraint Property="rise_status_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="rise_status_code" Type="Edm.Int32" DefaultValue="0"/>
+        <NavigationProperty Name="paygo_status" Type="CustomersService.PaygoStatus">
+          <ReferentialConstraint Property="paygo_status_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="paygo_status_code" Type="Edm.Int32" DefaultValue="0"/>
+        <Property Name="adjustment" Type="Edm.Decimal" Scale="2" Precision="5" DefaultValue="0"/>
+        <NavigationProperty Name="adjustment_reason" Type="CustomersService.AdjustmentReason">
+          <ReferentialConstraint Property="adjustment_reason_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="adjustment_reason_code" Type="Edm.Int32" DefaultValue="0"/>
+        <Property Name="engagement_score" Type="Edm.Decimal" Scale="2" Precision="5" DefaultValue="0"/>
+        <Property Name="next_renewal_date_criticality" Type="Edm.Int32" DefaultValue="0"/>
+        <Property Name="deleted" Type="Edm.Boolean" DefaultValue="false"/>
+        <NavigationProperty Name="to_activities" Type="Collection(CustomersService.Activities)" Partner="to_customer">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="to_risks" Type="Collection(CustomersService.Risks)" Partner="to_customer">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="to_maturity" Type="Collection(CustomersService.MaturityAssessments)" Partner="customer">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+        <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <NavigationProperty Name="DraftAdministrativeData" Type="CustomersService.DraftAdministrativeData" ContainsTarget="true"/>
+        <NavigationProperty Name="SiblingEntity" Type="CustomersService.Customers"/>
+      </EntityType>
+      <EntityType Name="MarketUnitsValueHelp">
+        <Property Name="market_unit" Type="Edm.String" MaxLength="50"/>
+      </EntityType>
+      <EntityType Name="Activities">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="IsActiveEntity"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <NavigationProperty Name="to_customer" Type="CustomersService.Customers" Partner="to_activities">
+          <ReferentialConstraint Property="to_customer_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="to_customer_ID" Type="Edm.Guid"/>
+        <NavigationProperty Name="activity_category" Type="CustomersService.ActivityCategory">
+          <ReferentialConstraint Property="activity_category_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="activity_category_code" Type="Edm.Int32"/>
+        <NavigationProperty Name="activity_type" Type="CustomersService.ActivityType">
+          <ReferentialConstraint Property="activity_type_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="activity_type_code" Type="Edm.Int32"/>
+        <Property Name="short_text" Type="Edm.String" MaxLength="100"/>
+        <Property Name="activity_description" Type="Edm.String"/>
+        <NavigationProperty Name="activity_status" Type="CustomersService.ActivityStatus">
+          <ReferentialConstraint Property="activity_status_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="activity_status_code" Type="Edm.Int32" DefaultValue="0"/>
+        <Property Name="activity_target" Type="Edm.Date"/>
+        <Property Name="activity_completed_at" Type="Edm.Date"/>
+        <NavigationProperty Name="sap_program" Type="CustomersService.SAPProgramType">
+          <ReferentialConstraint Property="sap_program_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="sap_program_code" Type="Edm.Int32"/>
+        <NavigationProperty Name="impl_support_team" Type="CustomersService.ImplSupportTeam">
+          <ReferentialConstraint Property="impl_support_team_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="impl_support_team_code" Type="Edm.Int32"/>
+        <Property Name="activity_ask" Type="Edm.String"/>
+        <NavigationProperty Name="to_products" Type="Collection(CustomersService.ActivityProducts)" Partner="activity">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+        <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <NavigationProperty Name="DraftAdministrativeData" Type="CustomersService.DraftAdministrativeData" ContainsTarget="true"/>
+        <NavigationProperty Name="SiblingEntity" Type="CustomersService.Activities"/>
+      </EntityType>
+      <EntityType Name="Risks">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="IsActiveEntity"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <NavigationProperty Name="to_customer" Type="CustomersService.Customers" Partner="to_risks">
+          <ReferentialConstraint Property="to_customer_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="to_customer_ID" Type="Edm.Guid"/>
+        <Property Name="short_text" Type="Edm.String" MaxLength="100"/>
+        <Property Name="risk_transaction_type" Type="Edm.Int32" DefaultValue="0"/>
+        <Property Name="risk_description" Type="Edm.String"/>
+        <Property Name="risk_mitigation_plan" Type="Edm.String"/>
+        <Property Name="risk_chance_of_success" Type="Edm.Int32" DefaultValue="0"/>
+        <NavigationProperty Name="risk_type" Type="CustomersService.RiskType">
+          <ReferentialConstraint Property="risk_type_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="risk_type_code" Type="Edm.Int32"/>
+        <NavigationProperty Name="risk_priority" Type="CustomersService.RiskPriority">
+          <ReferentialConstraint Property="risk_priority_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="risk_priority_code" Type="Edm.Int32"/>
+        <NavigationProperty Name="risk_status" Type="CustomersService.RiskStatus">
+          <ReferentialConstraint Property="risk_status_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="risk_status_code" Type="Edm.Int32"/>
+        <Property Name="risk_target" Type="Edm.Date"/>
+        <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+        <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <NavigationProperty Name="DraftAdministrativeData" Type="CustomersService.DraftAdministrativeData" ContainsTarget="true"/>
+        <NavigationProperty Name="SiblingEntity" Type="CustomersService.Risks"/>
+      </EntityType>
+      <EntityType Name="MaturityAssessments">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="IsActiveEntity"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <NavigationProperty Name="customer" Type="CustomersService.Customers" Partner="to_maturity">
+          <ReferentialConstraint Property="customer_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="customer_ID" Type="Edm.Guid"/>
+        <NavigationProperty Name="domain" Type="CustomersService.TechnologyDomains">
+          <ReferentialConstraint Property="domain_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="domain_code" Type="Edm.Int32"/>
+        <NavigationProperty Name="dimension" Type="CustomersService.MaturityDimensions">
+          <ReferentialConstraint Property="dimension_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="dimension_code" Type="Edm.Int32"/>
+        <Property Name="score" Type="Edm.Int32"/>
+        <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+        <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <NavigationProperty Name="DraftAdministrativeData" Type="CustomersService.DraftAdministrativeData" ContainsTarget="true"/>
+        <NavigationProperty Name="SiblingEntity" Type="CustomersService.MaturityAssessments"/>
+      </EntityType>
+      <EntityType Name="Regions">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="region_name" Type="Edm.String" MaxLength="50"/>
+        <NavigationProperty Name="market_units" Type="Collection(CustomersService.MarketUnits)" Partner="region"/>
+      </EntityType>
+      <EntityType Name="MarketUnits">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="mu_name" Type="Edm.String" MaxLength="50"/>
+        <NavigationProperty Name="region" Type="CustomersService.Regions" Partner="market_units">
+          <ReferentialConstraint Property="region_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="region_ID" Type="Edm.Guid"/>
+        <NavigationProperty Name="cees" Type="Collection(CustomersService.MarketUnitCees)" Partner="market_unit"/>
+      </EntityType>
+      <EntityType Name="MarketUnitCees">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <NavigationProperty Name="market_unit" Type="CustomersService.MarketUnits" Partner="cees">
+          <ReferentialConstraint Property="market_unit_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="market_unit_ID" Type="Edm.Guid"/>
+        <NavigationProperty Name="cee" Type="CustomersService.Cees" Partner="market_units">
+          <ReferentialConstraint Property="cee_id" ReferencedProperty="id"/>
+        </NavigationProperty>
+        <Property Name="cee_id" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="Cees">
+        <Key>
+          <PropertyRef Name="id"/>
+        </Key>
+        <Property Name="id" Type="Edm.String" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="100"/>
+        <Property Name="email" Type="Edm.String" MaxLength="256"/>
+        <NavigationProperty Name="market_units" Type="Collection(CustomersService.MarketUnitCees)" Partner="cee"/>
+      </EntityType>
+      <EntityType Name="ProductCategories">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="description" Type="Edm.String" MaxLength="50"/>
+      </EntityType>
+      <EntityType Name="ActivityProducts">
+        <Key>
+          <PropertyRef Name="ID"/>
+          <PropertyRef Name="IsActiveEntity"/>
+        </Key>
+        <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <NavigationProperty Name="activity" Type="CustomersService.Activities" Partner="to_products">
+          <ReferentialConstraint Property="activity_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="activity_ID" Type="Edm.Guid"/>
+        <NavigationProperty Name="product" Type="CustomersService.Products">
+          <ReferentialConstraint Property="product_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="product_ID" Type="Edm.Guid"/>
+        <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+        <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+        <NavigationProperty Name="DraftAdministrativeData" Type="CustomersService.DraftAdministrativeData" ContainsTarget="true"/>
+        <NavigationProperty Name="SiblingEntity" Type="CustomersService.ActivityProducts"/>
+      </EntityType>
+      <EntityType Name="Products">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="description" Type="Edm.String" MaxLength="50"/>
+        <NavigationProperty Name="category" Type="CustomersService.ProductCategories">
+          <ReferentialConstraint Property="category_ID" ReferencedProperty="ID"/>
+        </NavigationProperty>
+        <Property Name="category_ID" Type="Edm.Guid"/>
+      </EntityType>
+      <EntityType Name="MaturityDimensionLevels">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Guid" Nullable="false"/>
+        <NavigationProperty Name="dimension" Type="CustomersService.MaturityDimensions">
+          <ReferentialConstraint Property="dimension_code" ReferencedProperty="code"/>
+        </NavigationProperty>
+        <Property Name="dimension_code" Type="Edm.Int32"/>
+        <Property Name="maturity" Type="Edm.Int32"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.MaturityDimensionLevels_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.MaturityDimensionLevels_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Settings">
+        <Property Name="is_admin" Type="Edm.Boolean"/>
+      </EntityType>
+      <EntityType Name="Currencies">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
+        <Property Name="symbol" Type="Edm.String" MaxLength="5"/>
+        <Property Name="numcode" Type="Edm.Int32"/>
+        <Property Name="exponent" Type="Edm.Int32"/>
+        <Property Name="minor" Type="Edm.String"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.Currencies_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.Currencies_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="ExecutiveAlignment">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.ExecutiveAlignment_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.ExecutiveAlignment_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="PartnerType">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.PartnerType_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.PartnerType_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="RiseStatus">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.RiseStatus_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.RiseStatus_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="PaygoStatus">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.PaygoStatus_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.PaygoStatus_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="AdjustmentReason">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.AdjustmentReason_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.AdjustmentReason_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="ActivityCategory">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.ActivityCategory_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.ActivityCategory_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="ActivityType">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="category" Type="Edm.Int32"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.ActivityType_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.ActivityType_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="ActivityStatus">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.ActivityStatus_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.ActivityStatus_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="SAPProgramType">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.SAPProgramType_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.SAPProgramType_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="ImplSupportTeam">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.ImplSupportTeam_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.ImplSupportTeam_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="RiskType">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.RiskType_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.RiskType_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="RiskPriority">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.RiskPriority_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.RiskPriority_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="RiskStatus">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.RiskStatus_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.RiskStatus_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="TechnologyDomains">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.TechnologyDomains_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.TechnologyDomains_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="MaturityDimensions">
+        <Key>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="texts" Type="Collection(CustomersService.MaturityDimensions_texts)">
+          <OnDelete Action="Cascade"/>
+        </NavigationProperty>
+        <NavigationProperty Name="localized" Type="CustomersService.MaturityDimensions_texts">
+          <ReferentialConstraint Property="code" ReferencedProperty="code"/>
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="DraftAdministrativeData">
+        <Key>
+          <PropertyRef Name="DraftUUID"/>
+        </Key>
+        <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+        <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+        <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+        <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+        <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+        <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+        <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+      </EntityType>
+      <EntityType Name="MaturityDimensionLevels_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Guid" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="Currencies_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.String" MaxLength="3" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="ExecutiveAlignment_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+      </EntityType>
+      <EntityType Name="PartnerType_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+      </EntityType>
+      <EntityType Name="RiseStatus_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+      </EntityType>
+      <EntityType Name="PaygoStatus_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+      </EntityType>
+      <EntityType Name="AdjustmentReason_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+      </EntityType>
+      <EntityType Name="ActivityCategory_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="ActivityType_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="ActivityStatus_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false" DefaultValue="0"/>
+      </EntityType>
+      <EntityType Name="SAPProgramType_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="ImplSupportTeam_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="RiskType_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="RiskPriority_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="RiskStatus_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="TechnologyDomains_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <EntityType Name="MaturityDimensions_texts">
+        <Key>
+          <PropertyRef Name="locale"/>
+          <PropertyRef Name="code"/>
+        </Key>
+        <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+        <Property Name="name" Type="Edm.String" MaxLength="255"/>
+        <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+        <Property Name="code" Type="Edm.Int32" Nullable="false"/>
+      </EntityType>
+      <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="CustomersService.Customers"/>
+        <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+        <ReturnType Type="CustomersService.Customers"/>
+      </Action>
+      <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="CustomersService.Activities"/>
+        <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+        <ReturnType Type="CustomersService.Activities"/>
+      </Action>
+      <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="CustomersService.Risks"/>
+        <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+        <ReturnType Type="CustomersService.Risks"/>
+      </Action>
+      <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="CustomersService.MaturityAssessments"/>
+        <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+        <ReturnType Type="CustomersService.MaturityAssessments"/>
+      </Action>
+      <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="CustomersService.ActivityProducts"/>
+        <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+        <ReturnType Type="CustomersService.ActivityProducts"/>
+      </Action>
+      <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="CustomersService.Customers"/>
+        <ReturnType Type="CustomersService.Customers"/>
+      </Action>
+      <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+        <Parameter Name="in" Type="CustomersService.Customers"/>
+        <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+        <ReturnType Type="CustomersService.Customers"/>
+      </Action>
+      <Action Name="updateCustomers" IsBound="false"/>
+      <Action Name="startJobs" IsBound="false"/>
+      <Action Name="stopJobs" IsBound="false"/>
+      <Function Name="isAdmin" IsBound="false" IsComposable="false">
+        <ReturnType Type="Edm.Boolean"/>
+      </Function>
+      <Annotations Target="CustomersService.Customers">
+        <Annotation Term="Common.SemanticKey">
+          <Collection>
+            <PropertyPath>account_id</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Customer"/>
+        <Annotation Term="UI.HeaderInfo">
+          <Record Type="UI.HeaderInfoType">
+            <PropertyValue Property="TypeName" String="Customer"/>
+            <PropertyValue Property="TypeNamePlural" String="Customers"/>
+            <PropertyValue Property="Title">
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="customer_name"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.PresentationVariant">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Text" String="Default"/>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.LineItem</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="acv"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="RequestAtLeast">
+              <Collection>
+                <PropertyPath>consumption_actual</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionFields">
+          <Collection>
+            <PropertyPath>to_cee_id</PropertyPath>
+            <PropertyPath>customer_name</PropertyPath>
+            <PropertyPath>market_unit</PropertyPath>
+            <PropertyPath>deleted</PropertyPath>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.LineItem">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="account_id"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="100%"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="market_unit"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8em"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="acv"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="next_renewal_date"/>
+              <PropertyValue Property="Criticality" Path="next_renewal_date_criticality"/>
+              <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/WithoutIcon"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="to_cee_id"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="12em"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="cs_sentiment"/>
+              <PropertyValue Property="Criticality" Path="cs_sentiment_criticality"/>
+              <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/OnlyIcon"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8em"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="cs_sentiment_reason"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="cloud_health_assessment"/>
+              <PropertyValue Property="Criticality" Path="cloud_health_assessment_criticality"/>
+              <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/OnlyIcon"/>
+              <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Low"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="9em"/>
+                </Record>
+              </Annotation>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.HeaderFacets">
+          <Collection>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="CustomerHeader"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#CustomerHeader"/>
+              <PropertyValue Property="Label" String=""/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#ACV"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#RenewalDate"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Target" AnnotationPath="@UI.Chart#ConsumptionMicroChart"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="Sentiment"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Sentiment"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="HeaderLinks"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#HeaderLinks"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.Facets">
+          <Collection>
+            <Record Type="UI.CollectionFacet">
+              <PropertyValue Property="Label" String="Customer"/>
+              <PropertyValue Property="ID" String="Customer"/>
+              <PropertyValue Property="Facets">
+                <Collection>
+                  <Record Type="UI.ReferenceFacet">
+                    <PropertyValue Property="ID" String="StatusInfo"/>
+                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#StatusInfo"/>
+                    <PropertyValue Property="Label" String="Status Info"/>
+                  </Record>
+                </Collection>
+              </PropertyValue>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Target" AnnotationPath="to_activities/@UI.LineItem"/>
+              <PropertyValue Property="Label" String="Activities"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Target" AnnotationPath="to_risks/@UI.LineItem"/>
+              <PropertyValue Property="Label" String="Risks"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Target" AnnotationPath="to_maturity/@UI.LineItem"/>
+              <PropertyValue Property="Label" String="Maturity"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="CustomerHeader">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="to_cee_id"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="region"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="market_unit"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="HeaderLinks">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataFieldWithUrl">
+                  <PropertyValue Property="Value" String="View Cloud Reporting"/>
+                  <PropertyValue Property="Url" Path="cr_url"/>
+                  <PropertyValue Property="IconUrl" String=""/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="Sentiment">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="contract_start_date"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="cs_sentiment"/>
+                  <PropertyValue Property="Criticality" Path="cs_sentiment_criticality"/>
+                  <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/OnlyIcon"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="cs_sentiment_reason"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="cloud_health_assessment"/>
+                  <PropertyValue Property="Criticality" Path="cloud_health_assessment_criticality"/>
+                  <PropertyValue Property="CriticalityRepresentation" EnumMember="UI.CriticalityRepresentationType/OnlyIcon"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="consumption_actual"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="StatusInfo">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="planned_apps"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="live_apps"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="exec_sponsor_required"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="executive_alignment_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="partner_type_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="partner"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="rise_status_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="paygo_status_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="adjustment"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="adjustment_reason_code"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.DataPoint" Qualifier="ACV">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="acv"/>
+            <PropertyValue Property="Title" String="ACV"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.DataPoint" Qualifier="RenewalDate">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="next_renewal_date"/>
+            <PropertyValue Property="Title" String="Renewal Date"/>
+            <PropertyValue Property="Criticality" Path="next_renewal_date_criticality"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.Chart" Qualifier="ConsumptionMicroChart">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String="Consumption"/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>consumption_perc</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="consumption_perc"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                  <PropertyValue Property="DataPoint" AnnotationPath="@UI.DataPoint#Consumption"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.DataPoint" Qualifier="Consumption">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="consumption_perc"/>
+            <PropertyValue Property="Title" String="Consumption"/>
+            <PropertyValue Property="Description" String="Radial Micro Chart"/>
+            <PropertyValue Property="TargetValue" Int="100"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.EntityContainer/Customers">
+        <Annotation Term="Common.DraftRoot">
+          <Record Type="Common.DraftRootType">
+            <PropertyValue Property="ActivationAction" String="CustomersService.draftActivate"/>
+            <PropertyValue Property="EditAction" String="CustomersService.draftEdit"/>
+            <PropertyValue Property="PreparationAction" String="CustomersService.draftPrepare"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.PresentationVariant">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Text" String="Default"/>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.LineItem</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="acv"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="RequestAtLeast">
+              <Collection>
+                <PropertyPath>consumption_actual</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/account_id">
+        <Annotation Term="Common.Text" Path="customer_name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Account ID"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/customer_name">
+        <Annotation Term="Common.Label" String="Customer Name"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/account_type">
+        <Annotation Term="Common.Label" String="Account Type"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/status">
+        <Annotation Term="Common.Label" String="Status"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/region">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/market_unit">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="MarketUnitsValueHelp"/>
+            <PropertyValue Property="Label" String="Market Unit"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="market_unit"/>
+                  <PropertyValue Property="ValueListProperty" String="market_unit"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Market Unit"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/country">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/industry_code">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/to_cee">
+        <Annotation Term="Common.Label" String="CEE"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/to_cee_id">
+        <Annotation Term="Common.Text" Path="to_cee/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="Cees"/>
+            <PropertyValue Property="Label" String="CEE"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="to_cee_id"/>
+                  <PropertyValue Property="ValueListProperty" String="id"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="email"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="SearchSupported" Bool="true"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CEE"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/acv">
+        <Annotation Term="Measures.ISOCurrency" Path="currency_code"/>
+        <Annotation Term="Common.Label" String="ACV"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/health_rank">
+        <Annotation Term="Common.Label" String="Health Rank"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/cloud_health_assessment">
+        <Annotation Term="Common.Label" String="Cloud Health Score"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/cs_sentiment">
+        <Annotation Term="Common.Label" String="CS Sentiment"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/cs_sentiment_reason">
+        <Annotation Term="Common.Label" String="CS Sentiment Reason"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/entitlement_consumption">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/consumption_actual">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/shelfware">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/days_in_shelfware">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/products">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/renewal_type">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/next_renewal_date">
+        <Annotation Term="Common.Label" String="Next Renewal Date"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/days_until_next_renewal">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/ce_acct_classification">
+        <Annotation Term="Common.Label" String="Account Classification"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/int_acct_classification">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/last_touch">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/satisfaction_score">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/contract_start_date">
+        <Annotation Term="Common.Label" String="Contract start date"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/currency">
+        <Annotation Term="Core.Description" String="Currency code as specified by ISO 4217"/>
+        <Annotation Term="Common.Label" String="Currency"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/currency_code">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="Currency code as specified by ISO 4217"/>
+        <Annotation Term="Common.Label" String="Currency"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Currency"/>
+            <PropertyValue Property="CollectionPath" String="Currencies"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="currency_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/cr_url">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/consumption_perc">
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Consumption"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/cs_sentiment_criticality">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/cloud_health_assessment_criticality">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/exec_sponsor_required">
+        <Annotation Term="Common.Label" String="Exec Sponsor Required"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/executive_alignment">
+        <Annotation Term="Common.Label" String="Executive Alignment"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/executive_alignment_code">
+        <Annotation Term="Common.Text" Path="executive_alignment/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="Executive Alignment"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Executive Alignment"/>
+            <PropertyValue Property="CollectionPath" String="ExecutiveAlignment"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="executive_alignment_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/partner_type">
+        <Annotation Term="Common.Label" String="Partner Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/partner_type_code">
+        <Annotation Term="Common.Text" Path="partner_type/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="Partner Type"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Partner Type"/>
+            <PropertyValue Property="CollectionPath" String="PartnerType"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="partner_type_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/partner">
+        <Annotation Term="Common.Label" String="Partner"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/live_apps">
+        <Annotation Term="Common.Label" String="Live Apps"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/planned_apps">
+        <Annotation Term="Common.Label" String="Planned Apps"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/rise_status">
+        <Annotation Term="Common.Label" String="RISE Status"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/rise_status_code">
+        <Annotation Term="Common.Text" Path="rise_status/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="RISE Status"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="RISE Status"/>
+            <PropertyValue Property="CollectionPath" String="RiseStatus"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="rise_status_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/paygo_status">
+        <Annotation Term="Common.Label" String="PAYGO Status"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/paygo_status_code">
+        <Annotation Term="Common.Text" Path="paygo_status/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="PAYGO Status"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="PAYGO Status"/>
+            <PropertyValue Property="CollectionPath" String="PaygoStatus"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="paygo_status_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/adjustment">
+        <Annotation Term="Common.Label" String="Adjustment"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/adjustment_reason">
+        <Annotation Term="Common.Label" String="Adjustment Reason"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/adjustment_reason_code">
+        <Annotation Term="Common.Text" Path="adjustment_reason/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="Adjustment Reason"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Adjustment Reason"/>
+            <PropertyValue Property="CollectionPath" String="AdjustmentReason"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="adjustment_reason_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/deleted">
+        <Annotation Term="Common.FilterDefaultValue" Bool="false"/>
+        <Annotation Term="Common.Label" String="Deleted"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/IsActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/HasActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/HasDraftEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Customers/DraftAdministrativeData">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.EntityContainer/MarketUnitsValueHelp">
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.MarketUnitsValueHelp/market_unit">
+        <Annotation Term="Core.Computed" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities">
+        <Annotation Term="UI.HeaderInfo">
+          <Record Type="UI.HeaderInfoType">
+            <PropertyValue Property="TypeName" String="Activity"/>
+            <PropertyValue Property="TypeNamePlural" String="Activities"/>
+            <PropertyValue Property="Title">
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="short_text"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.PresentationVariant">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Text" String="Default"/>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.LineItem</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="createdAt"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="RequestAtLeast">
+              <Collection>
+                <PropertyPath>activity_description</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionVariant" Qualifier="ActivityTransactionFilter">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Text" String="Transactions"/>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="activity_category_code"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/NE"/>
+                        <PropertyValue Property="Low" Int="1"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionVariant" Qualifier="ActivityAdoptionFilter">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Text" String="FRE Activities"/>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="activity_category_code"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" Int="1"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionFields">
+          <Collection/>
+        </Annotation>
+        <Annotation Term="UI.LineItem">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="activity_type_code"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8em"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="activity_status_code"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="8em"/>
+                </Record>
+              </Annotation>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="activity_target"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="short_text"/>
+              <Annotation Term="HTML5.CssDefaults">
+                <Record Type="HTML5.CssDefaultsType">
+                  <PropertyValue Property="width" String="100%"/>
+                </Record>
+              </Annotation>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.HeaderFacets">
+          <Collection>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="ActivityStatus"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ActivityStatus"/>
+              <PropertyValue Property="Label" String="Status"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="ActivityManaged"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ActivityManaged"/>
+              <PropertyValue Property="Label" String="Changes"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.Facets">
+          <Collection>
+            <Record Type="UI.CollectionFacet">
+              <PropertyValue Property="Label" String="Activity"/>
+              <PropertyValue Property="ID" String="Activity"/>
+              <PropertyValue Property="Facets">
+                <Collection>
+                  <Record Type="UI.ReferenceFacet">
+                    <PropertyValue Property="ID" String="ActivityDescription"/>
+                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ActivityDescription"/>
+                    <PropertyValue Property="Label" String="Info"/>
+                  </Record>
+                </Collection>
+              </PropertyValue>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="Target" AnnotationPath="to_products/@UI.LineItem"/>
+              <PropertyValue Property="Label" String="Products"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="ActivityStatus">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="activity_category_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="activity_type_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="activity_status_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="activity_target"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="ActivityManaged">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="createdBy"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="createdAt"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="modifiedBy"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="modifiedAt"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="ActivityDescription">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="activity_ask"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="activity_completed_at"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="sap_program_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="impl_support_team_code"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Activities"/>
+      </Annotations>
+      <Annotations Target="CustomersService.EntityContainer/Activities">
+        <Annotation Term="UI.PresentationVariant">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Text" String="Default"/>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.LineItem</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="createdAt"/>
+                  <PropertyValue Property="Descending" Bool="true"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="RequestAtLeast">
+              <Collection>
+                <PropertyPath>activity_description</PropertyPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionVariant" Qualifier="ActivityTransactionFilter">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Text" String="Transactions"/>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="activity_category_code"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/NE"/>
+                        <PropertyValue Property="Low" Int="1"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionVariant" Qualifier="ActivityAdoptionFilter">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Text" String="FRE Activities"/>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="activity_category_code"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" Int="1"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.DraftNode">
+          <Record Type="Common.DraftNodeType">
+            <PropertyValue Property="PreparationAction" String="CustomersService.draftPrepare"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/ID">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/activity_category">
+        <Annotation Term="Common.Label" String="Category"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/activity_category_code">
+        <Annotation Term="Common.Text" Path="activity_category/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+        <Annotation Term="Common.Label" String="Category"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Category"/>
+            <PropertyValue Property="CollectionPath" String="ActivityCategory"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="activity_category_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/activity_type">
+        <Annotation Term="Common.Label" String="Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/activity_type_code">
+        <Annotation Term="Common.Text" Path="activity_type/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="ActivityType"/>
+            <PropertyValue Property="Label" String="Activity Type"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterIn">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="activity_category_code"/>
+                  <PropertyValue Property="ValueListProperty" String="category"/>
+                </Record>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="activity_type_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/short_text">
+        <Annotation Term="Common.Label" String="Short description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/activity_description">
+        <Annotation Term="UI.MultiLineText" Bool="true"/>
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/activity_status">
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/activity_status_code">
+        <Annotation Term="Common.Text" Path="activity_status/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="Status"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Status"/>
+            <PropertyValue Property="CollectionPath" String="ActivityStatus"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="activity_status_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/activity_target">
+        <Annotation Term="Common.Label" String="Target"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/activity_completed_at">
+        <Annotation Term="Common.Label" String="Completed on"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/sap_program">
+        <Annotation Term="Common.Label" String="SAP program"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/sap_program_code">
+        <Annotation Term="Common.Text" Path="sap_program/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="SAP program"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="SAP program"/>
+            <PropertyValue Property="CollectionPath" String="SAPProgramType"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="sap_program_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/impl_support_team">
+        <Annotation Term="Common.Label" String="Impl. support team"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/impl_support_team_code">
+        <Annotation Term="Common.Text" Path="impl_support_team/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="Impl. support team"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Impl. support team"/>
+            <PropertyValue Property="CollectionPath" String="ImplSupportTeam"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="impl_support_team_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/activity_ask">
+        <Annotation Term="Common.Label" String="Ask"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/IsActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/HasActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/HasDraftEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Activities/DraftAdministrativeData">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="short_text"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.HeaderInfo">
+          <Record Type="UI.HeaderInfoType">
+            <PropertyValue Property="TypeName" String="Risk"/>
+            <PropertyValue Property="TypeNamePlural" String="Risks"/>
+            <PropertyValue Property="Title">
+              <Record Type="UI.DataField">
+                <PropertyValue Property="Value" Path="short_text"/>
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.PresentationVariant">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Text" String="Default"/>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.LineItem</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.SelectionFields">
+          <Collection/>
+        </Annotation>
+        <Annotation Term="UI.LineItem">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="risk_type_code"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="short_text"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="risk_priority_code"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="risk_status_code"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="risk_target"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.HeaderFacets">
+          <Collection>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="RiskStatus"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#RiskStatus"/>
+              <PropertyValue Property="Label" String="Status"/>
+            </Record>
+            <Record Type="UI.ReferenceFacet">
+              <PropertyValue Property="ID" String="RiskManagement"/>
+              <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#RiskManagement"/>
+              <PropertyValue Property="Label" String="Changes"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.Facets">
+          <Collection>
+            <Record Type="UI.CollectionFacet">
+              <PropertyValue Property="Label" String="Activity"/>
+              <PropertyValue Property="ID" String="Activity"/>
+              <PropertyValue Property="Facets">
+                <Collection>
+                  <Record Type="UI.ReferenceFacet">
+                    <PropertyValue Property="ID" String="ActivityDescription"/>
+                    <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#ActivityDescription"/>
+                    <PropertyValue Property="Label" String="Info"/>
+                  </Record>
+                </Collection>
+              </PropertyValue>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="RiskStatus">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="risk_type_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="risk_priority_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="risk_status_code"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="risk_target"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="RiskManagement">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="createdBy"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="createdAt"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="modifiedBy"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="modifiedAt"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.FieldGroup" Qualifier="ActivityDescription">
+          <Record Type="UI.FieldGroupType">
+            <PropertyValue Property="Data">
+              <Collection>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="risk_description"/>
+                </Record>
+                <Record Type="UI.DataField">
+                  <PropertyValue Property="Value" Path="risk_mitigation_plan"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Risks"/>
+      </Annotations>
+      <Annotations Target="CustomersService.EntityContainer/Risks">
+        <Annotation Term="UI.PresentationVariant">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Text" String="Default"/>
+            <PropertyValue Property="Visualizations">
+              <Collection>
+                <AnnotationPath>@UI.LineItem</AnnotationPath>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.DraftNode">
+          <Record Type="Common.DraftNodeType">
+            <PropertyValue Property="PreparationAction" String="CustomersService.draftPrepare"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/ID">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/short_text">
+        <Annotation Term="Common.Label" String="Short description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/risk_description">
+        <Annotation Term="UI.MultiLineText" Bool="true"/>
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/risk_mitigation_plan">
+        <Annotation Term="UI.MultiLineText" Bool="true"/>
+        <Annotation Term="Common.Label" String="Mitigation plan"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/risk_type">
+        <Annotation Term="Common.Label" String="Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/risk_type_code">
+        <Annotation Term="Common.Text" Path="risk_type/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="Type"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Type"/>
+            <PropertyValue Property="CollectionPath" String="RiskType"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="risk_type_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/risk_priority">
+        <Annotation Term="Common.Label" String="Priority"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/risk_priority_code">
+        <Annotation Term="Common.Text" Path="risk_priority/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="Priority"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Priority"/>
+            <PropertyValue Property="CollectionPath" String="RiskPriority"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="risk_priority_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/risk_status">
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/risk_status_code">
+        <Annotation Term="Common.Text" Path="risk_status/name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.Label" String="Status"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="Status"/>
+            <PropertyValue Property="CollectionPath" String="RiskStatus"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="risk_status_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/risk_target">
+        <Annotation Term="Common.Label" String="Target"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/IsActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/HasActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/HasDraftEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Risks/DraftAdministrativeData">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.EntityContainer/MaturityAssessments">
+        <Annotation Term="Common.DraftNode">
+          <Record Type="Common.DraftNodeType">
+            <PropertyValue Property="PreparationAction" String="CustomersService.draftPrepare"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/domain_code">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="TechnologyDomains"/>
+            <PropertyValue Property="CollectionPath" String="TechnologyDomains"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="domain_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/dimension_code">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="MaturityDimensions"/>
+            <PropertyValue Property="CollectionPath" String="MaturityDimensions"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="dimension_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/score">
+        <Annotation Term="Validation.Minimum" Int="0"/>
+        <Annotation Term="Validation.Maximum" Int="5"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/IsActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/HasActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/HasDraftEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityAssessments/DraftAdministrativeData">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Cees">
+        <Annotation Term="Common.Label" String="CEE"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Cees/id">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="CEE"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Cees/name">
+        <Annotation Term="Common.Label" String="CEE"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Cees/email">
+        <Annotation Term="Common.Label" String="Email"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ProductCategories">
+        <Annotation Term="Common.Label" String="Category"/>
+      </Annotations>
+      <Annotations Target="CustomersService.EntityContainer/ProductCategories">
+        <Annotation Term="Capabilities.InsertRestrictions">
+          <Record Type="Capabilities.InsertRestrictionsType">
+            <PropertyValue Property="Insertable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.DeleteRestrictions">
+          <Record Type="Capabilities.DeleteRestrictionsType">
+            <PropertyValue Property="Deletable" Bool="false"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Capabilities.UpdateRestrictions">
+          <Record Type="Capabilities.UpdateRestrictionsType">
+            <PropertyValue Property="Updatable" Bool="false"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.ProductCategories/ID">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ProductCategories/description">
+        <Annotation Term="Common.Label" String="Category"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="ID"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="UI.HeaderInfo">
+          <Record Type="UI.HeaderInfoType">
+            <PropertyValue Property="TypeName" String="Product"/>
+            <PropertyValue Property="TypeNamePlural" String="Products"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="UI.LineItem">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="product_ID"/>
+            </Record>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="product/category/description"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Products"/>
+      </Annotations>
+      <Annotations Target="CustomersService.EntityContainer/ActivityProducts">
+        <Annotation Term="Common.DraftNode">
+          <Record Type="Common.DraftNodeType">
+            <PropertyValue Property="PreparationAction" String="CustomersService.draftPrepare"/>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/createdAt">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Created On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/createdBy">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Immutable" Bool="true"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Created By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/modifiedAt">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Common.Label" String="Changed On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/modifiedBy">
+        <Annotation Term="UI.HiddenFilter" Bool="false"/>
+        <Annotation Term="Core.Computed" Bool="true"/>
+        <Annotation Term="Core.Description" String="User's unique ID"/>
+        <Annotation Term="Common.Label" String="Changed By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/ID">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/product">
+        <Annotation Term="Common.Label" String="Product"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/product_ID">
+        <Annotation Term="Common.Text" Path="product/description">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="CollectionPath" String="Products"/>
+            <PropertyValue Property="Label" String="Products"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="category/description"/>
+                </Record>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="product_ID"/>
+                  <PropertyValue Property="ValueListProperty" String="ID"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="PresentationVariantQualifier" String="SortOrderProducts"/>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Product"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/IsActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/HasActiveEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/HasDraftEntity">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityProducts/DraftAdministrativeData">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Products">
+        <Annotation Term="UI.PresentationVariant" Qualifier="SortOrderProducts">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Text" String="Default"/>
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="category_ID"/>
+                  <PropertyValue Property="Descending" Bool="false"/>
+                </Record>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="description"/>
+                  <PropertyValue Property="Descending" Bool="false"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Products"/>
+      </Annotations>
+      <Annotations Target="CustomersService.EntityContainer/Products">
+        <Annotation Term="UI.PresentationVariant" Qualifier="SortOrderProducts">
+          <Record Type="UI.PresentationVariantType">
+            <PropertyValue Property="Text" String="Default"/>
+            <PropertyValue Property="SortOrder">
+              <Collection>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="category_ID"/>
+                  <PropertyValue Property="Descending" Bool="false"/>
+                </Record>
+                <Record Type="Common.SortOrderType">
+                  <PropertyValue Property="Property" PropertyPath="description"/>
+                  <PropertyValue Property="Descending" Bool="false"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Products/ID">
+        <Annotation Term="Common.Text" Path="description">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Product"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensionLevels">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensionLevels/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensionLevels/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensionLevels/dimension_code">
+        <Annotation Term="Common.ValueList">
+          <Record Type="Common.ValueListType">
+            <PropertyValue Property="Label" String="MaturityDimensions"/>
+            <PropertyValue Property="CollectionPath" String="MaturityDimensions"/>
+            <PropertyValue Property="Parameters">
+              <Collection>
+                <Record Type="Common.ValueListParameterInOut">
+                  <PropertyValue Property="LocalDataProperty" PropertyPath="dimension_code"/>
+                  <PropertyValue Property="ValueListProperty" String="code"/>
+                </Record>
+                <Record Type="Common.ValueListParameterDisplayOnly">
+                  <PropertyValue Property="ValueListProperty" String="name"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensionLevels/maturity">
+        <Annotation Term="Validation.Minimum" Int="0"/>
+        <Annotation Term="Validation.Maximum" Int="5"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Currencies">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.Currencies/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Currencies/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Currencies/code">
+        <Annotation Term="Common.Text" Path="name"/>
+        <Annotation Term="Common.Label" String="Currency Code"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Currencies/symbol">
+        <Annotation Term="Common.Label" String="Currency Symbol"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ExecutiveAlignment">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Executive Alignment"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ExecutiveAlignment/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ExecutiveAlignment/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ExecutiveAlignment/code">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.PartnerType">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.PartnerType/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.PartnerType/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiseStatus">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="RISE Status"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiseStatus/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiseStatus/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiseStatus/code">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.PaygoStatus">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.PaygoStatus/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.PaygoStatus/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.AdjustmentReason">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Adjustment Reason"/>
+      </Annotations>
+      <Annotations Target="CustomersService.AdjustmentReason/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.AdjustmentReason/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.AdjustmentReason/code">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityCategory">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Activity Category"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityCategory/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityCategory/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityCategory/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityType">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Activity Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityType/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityType/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityType/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityStatus">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Activity Status"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityStatus/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityStatus/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityStatus/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.SAPProgramType">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="SAP Program Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.SAPProgramType/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.SAPProgramType/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.SAPProgramType/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ImplSupportTeam">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Implementation Support Team"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ImplSupportTeam/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ImplSupportTeam/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ImplSupportTeam/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskType">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskType/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskType/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskType/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Type"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskPriority">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Priority"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskPriority/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskPriority/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskPriority/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Priority"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskStatus">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskStatus/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskStatus/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskStatus/code">
+        <Annotation Term="Common.Text" Path="name">
+          <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+        </Annotation>
+        <Annotation Term="Common.Label" String="Status"/>
+      </Annotations>
+      <Annotations Target="CustomersService.TechnologyDomains">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.TechnologyDomains/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.TechnologyDomains/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.TechnologyDomains/code">
+        <Annotation Term="Validation.AllowedValues">
+          <Collection>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="integration"/>
+              <PropertyValue Property="Value" Int="0"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="data"/>
+              <PropertyValue Property="Value" Int="1"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="security"/>
+              <PropertyValue Property="Value" Int="2"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="analytics"/>
+              <PropertyValue Property="Value" Int="3"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="development"/>
+              <PropertyValue Property="Value" Int="4"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensions">
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataField">
+              <PropertyValue Property="Value" Path="name"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensions/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensions/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensions/code">
+        <Annotation Term="Validation.AllowedValues">
+          <Collection>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="architecture"/>
+              <PropertyValue Property="Value" Int="0"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="strategy"/>
+              <PropertyValue Property="Value" Int="1"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="btpKnowledge"/>
+              <PropertyValue Property="Value" Int="2"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="capability"/>
+              <PropertyValue Property="Value" Int="3"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="portfolioSuccess"/>
+              <PropertyValue Property="Value" Int="4"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="itOperation"/>
+              <PropertyValue Property="Value" Int="5"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.DraftAdministrativeData">
+        <Annotation Term="Common.Label" String="Draft Administrative Data"/>
+      </Annotations>
+      <Annotations Target="CustomersService.DraftAdministrativeData/DraftUUID">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Common.Label" String="Draft (Technical ID)"/>
+      </Annotations>
+      <Annotations Target="CustomersService.DraftAdministrativeData/CreationDateTime">
+        <Annotation Term="Common.Label" String="Draft Created On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.DraftAdministrativeData/CreatedByUser">
+        <Annotation Term="Common.Label" String="Draft Created By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.DraftAdministrativeData/DraftIsCreatedByMe">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Common.Label" String="Draft Created By Me"/>
+      </Annotations>
+      <Annotations Target="CustomersService.DraftAdministrativeData/LastChangeDateTime">
+        <Annotation Term="Common.Label" String="Draft Last Changed On"/>
+      </Annotations>
+      <Annotations Target="CustomersService.DraftAdministrativeData/LastChangedByUser">
+        <Annotation Term="Common.Label" String="Draft Last Changed By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.DraftAdministrativeData/InProcessByUser">
+        <Annotation Term="Common.Label" String="Draft In Process By"/>
+      </Annotations>
+      <Annotations Target="CustomersService.DraftAdministrativeData/DraftIsProcessedByMe">
+        <Annotation Term="UI.Hidden" Bool="true"/>
+        <Annotation Term="Common.Label" String="Draft In Process By Me"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensionLevels_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensionLevels_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Currencies_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Currencies_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.Currencies_texts/code">
+        <Annotation Term="Common.Text" Path="name"/>
+        <Annotation Term="Common.Label" String="Currency Code"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ExecutiveAlignment_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ExecutiveAlignment_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.PartnerType_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.PartnerType_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiseStatus_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiseStatus_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.PaygoStatus_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.PaygoStatus_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.AdjustmentReason_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.AdjustmentReason_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityCategory_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityCategory_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityType_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityType_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityStatus_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ActivityStatus_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.SAPProgramType_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.SAPProgramType_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ImplSupportTeam_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.ImplSupportTeam_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskType_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskType_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskPriority_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskPriority_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskStatus_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.RiskStatus_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.TechnologyDomains_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.TechnologyDomains_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.TechnologyDomains_texts/code">
+        <Annotation Term="Validation.AllowedValues">
+          <Collection>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="integration"/>
+              <PropertyValue Property="Value" Int="0"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="data"/>
+              <PropertyValue Property="Value" Int="1"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="security"/>
+              <PropertyValue Property="Value" Int="2"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="analytics"/>
+              <PropertyValue Property="Value" Int="3"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="development"/>
+              <PropertyValue Property="Value" Int="4"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensions_texts/name">
+        <Annotation Term="Common.Label" String="Name"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensions_texts/descr">
+        <Annotation Term="Common.Label" String="Description"/>
+      </Annotations>
+      <Annotations Target="CustomersService.MaturityDimensions_texts/code">
+        <Annotation Term="Validation.AllowedValues">
+          <Collection>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="architecture"/>
+              <PropertyValue Property="Value" Int="0"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="strategy"/>
+              <PropertyValue Property="Value" Int="1"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="btpKnowledge"/>
+              <PropertyValue Property="Value" Int="2"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="capability"/>
+              <PropertyValue Property="Value" Int="3"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="portfolioSuccess"/>
+              <PropertyValue Property="Value" Int="4"/>
+            </Record>
+            <Record Type="Validation.AllowedValue">
+              <Annotation Term="Core.SymbolicName" String="itOperation"/>
+              <PropertyValue Property="Value" Int="5"/>
+            </Record>
+          </Collection>
+        </Annotation>
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

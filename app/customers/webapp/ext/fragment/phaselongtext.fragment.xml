@@ -1,0 +1,7 @@
+<!--
+	Fragment for a custom object page section on the Activation Tasks object page.
+	This is used to display the long text of an activation task.
+-->
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:block="sap.fe.blocks.richtexteditor">
+	<block:RichTextEditor value="{phase_description}" id="rteBlockActivationTask"/>
+</core:FragmentDefinition>

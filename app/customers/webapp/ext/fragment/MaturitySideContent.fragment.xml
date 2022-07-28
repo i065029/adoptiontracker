@@ -1,0 +1,34 @@
+<!--
+    Adding dynamic side content to an object page section: https://ui5.sap.com/#/topic/8e01a463d3984bfa8b23c2270d40e38c
+-->
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:grid="sap.ui.layout.cssgrid" >
+	<!--<l:VerticalLayout core:require="{handler: 'sap/fe/featureShowcase/mainApp/ext/CustomController'}" width="100%">-->
+    <ScrollContainer
+        height="40rem"
+        width="100%"
+        vertical="true">
+		<Title text="Assessment Questions"/>
+        <Table id="maturityDimensionLevels" items="{path: '/MaturityDimensionLevels', sorter: [{path: 'dimension_code'}, {path: 'maturity'}]}">
+            <columns>
+                <Column>
+                    <Label text="Dimension"></Label>
+                </Column>
+                <Column>
+                    <Label text="Maturity"></Label>
+                </Column>
+                <Column>
+                    <Label text="Description"></Label>
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <Text text="{dimension/name}"></Text>
+                    <RatingIndicator maxValue="5" value="{maturity}" editable="false" />
+                    <Text text="{descr}"></Text>
+                    <TextArea visible="false" value="{descr}" editable="false" />
+                </ColumnListItem>
+            </items>
+        </Table>
+	<!--</l:VerticalLayout>-->
+    </ScrollContainer>
+</core:FragmentDefinition>

@@ -1,0 +1,75 @@
+{
+  "name": "adoptiontracker",
+  "version": "1.0.0",
+  "description": "FRE Engagement Tracker app for SAP BTP CSPs.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^5.9.6",
+    "@sap/xsenv": "^3.2.2",
+    "@sap/xssec": "^3.2.13",
+    "express": "^4.18.1",
+    "hdb": "^0.19.2",
+    "passport": "^0.6.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@sap/eslint-plugin-cds": "^2.3.5",
+    "@sap/ux-specification": "^1.102.2",
+    "eslint": "^8.16.0",
+    "sqlite3": "^5.0.8"
+  },
+  "scripts": {
+    "start": "cds run",
+    "lint": "cds lint",
+    "deploy": "mbt build --mtar adoptiontracker.mtar && cf deploy mta_archives/adoptiontracker.mtar",
+    "watch-activities": "cds watch --open activities/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4",
+    "watch-customers": "cds watch --open customers/webapp/index.html?sap-ui-xx-viewCache=false",
+    "test": "cds watch --open customers/webapp/test/integration/OpaTests.qunit.html",
+    "watch-products": "cds watch --open products/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/customers",
+    "app/activities",
+    "app/products"
+  ],
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sql",
+        "pool": {
+          "acquireTimeoutMillis": 10000,
+          "max": 1000
+        }
+      },
+      "uaa": {
+        "kind": "xsuaa",
+        "credentials": {}
+      },
+      "TotangoCustomersApi": {
+        "kind": "rest",
+        "impl": "srv/ext/TotangoCustomersApi.js",
+        "credentials": {
+          "destination": "totango"
+        }
+      },
+      "FREActivityService": {
+        "kind": "odata",
+        "model": "srv/external/FREActivityService",
+        "[production]": {
+          "credentials": {
+            "destination": "activityreporemotedest",
+            "path": "/activities"
+          }
+        }
+      }
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    }
+  },
+  "--features": {
+    "assert_integrity": false
+  }
+}

@@ -1,0 +1,12 @@
+{
+    "role": {
+        "name": "adoptiontracker.db::EXTERNAL_ACCESS_ACTIVITYREPO",
+        "schema_privileges": [
+            {
+                "privileges": [
+                    "SELECT"
+                ]
+            }
+        ]
+    }
+}
